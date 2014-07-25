@@ -190,8 +190,8 @@ pkcs11_generate_key_on_board_rsa(PKCS11_TOKEN * token,
 	return 0;
 }
 
-static int
-pkcs11_generate_key_on_board(PKCS11_TOKEN * token,
+int
+PKCS11_generate_key_on_board(PKCS11_TOKEN * token,
 		    int algorithm, unsigned int bits, char *label, unsigned char* id, size_t id_len)
 {
 	switch (algorithm) {
@@ -218,11 +218,6 @@ PKCS11_generate_key(PKCS11_TOKEN * token,
 	RSA *rsa;
 	BIO *err;
 	int rc;
-
-	rc = pkcs11_generate_key_on_board(token,algorithm,bits,label,id,id_len);
-	if (rc == 0) {
-		return rc;
-	}
 
 	if (algorithm != EVP_PKEY_RSA) {
 		PKCS11err(PKCS11_F_PKCS11_GENERATE_KEY, PKCS11_NOT_SUPPORTED);

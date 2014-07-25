@@ -310,6 +310,21 @@ extern int PKCS11_change_pin(PKCS11_SLOT * slot, const char *old_pin,
 
 extern int PKCS11_generate_key(PKCS11_TOKEN * token, int algorithm, unsigned int bits, char *label, unsigned char* id, size_t id_len);
 
+/** 
+ * Generate and store a private key on the token
+ *
+ * @param token token returned by PKCS11_find_token()
+ * @param algorithm EVP_PKEY_RSA
+ * @param bits size of the modulus in bits
+ * @param label label for this key
+ * @param id bytes to use as id value
+ * @param id_len length of id value.
+ * @retval 0 success
+ * @retval -1 error
+ */
+
+extern int PKCS11_generate_key_on_board(PKCS11_TOKEN * token, int algorithm, unsigned int bits, char *label, unsigned char* id, size_t id_len);
+
 /**
  * Store private key on a token
  *
